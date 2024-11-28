@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using Banner.Models;
 
 namespace Banner
 {
@@ -11,8 +12,8 @@ namespace Banner
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine('■');
 
-            Banner kep = new Banner();
-            kep[2, 5] = new Color(32, 3, 4, 2);
+            UBanner kep = new UBanner();
+            kep[2, 5] = Color.Blue;
         }
     }
 }

@@ -18,11 +18,25 @@ namespace Banner.Models
         private Color[,] pixel;
         private Color backgroundColor;
 
-        protected ABanner(int rowNum, int columnNum)
+        public ABanner(int rowNum, int columnNum)
         {
             if (IsOutOfBounds(rowNum, columnNum))
                 throw new ArgumentException(MSG_ERROR_ARG + $"[ABanner: {rowNum}]");
-            pixel[rowNum, columnNum] = new();
+
+            pixel = new Color[rowNum, columnNum];
+
+            HelpFiller(BackgroundColor);
+        }
+
+        public void HelpFiller(Color fillColor)
+        {
+            for (int rowIndex = 0; rowIndex < pixel.GetLength(0); rowIndex++)
+            {
+                for (int columnIndex = 0; columnIndex < pixel.GetLength(1); columnIndex++)
+                {
+                    pixel[rowIndex, columnIndex] = fillColor;
+                }
+            }
         }
 
         private static bool IsOutOfBounds(int rowNum, int columnNum)
@@ -31,7 +45,7 @@ namespace Banner.Models
                             || columnNum > MAX_COLUMN_NUM || columnNum < MIN_COLUMN_NUM;
         }
 
-        protected ABanner() : this(MIN_ROW_NUM, MIN_COLUMN_NUM)
+        public ABanner() : this(MIN_ROW_NUM, MIN_COLUMN_NUM)
         {
         }
 
